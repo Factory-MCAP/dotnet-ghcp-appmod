@@ -1,0 +1,47 @@
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+*.DS_Store
+
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored if it is not under source control
+packages/
+
+# Visual Studio Code workspace settings
+.vscode/
+
+# Others
+*.log
+
+# Resharper
+*.DotSettings.user
+
+# IIS Express
+/.vs/
+
+# Backup & crash reports
+*.bak
+*.swp
+*.tmp
+
+# Publish Web Output
+*.Publish.xml
+
+# Rider
+.idea/

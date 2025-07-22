@@ -1,0 +1,396 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "Any",
+    "runConfig": {
+      "analysis": {
+        "settings": {
+          "binaries": {
+            "useDefaultExclusions": true,
+            "include": [],
+            "exclude": [
+              "**/csc.*",
+              "**/csi.*",
+              "**/EntityFramework.*",
+              "**/EntityFramework*",
+              "**/Microsoft*",
+              "**/mscorlib.*",
+              "**/netstandard.*",
+              "**/System*",
+              "**/vbc.*",
+              "**/VBCSCompiler.*",
+              "**/Yarp.ReverseProxy*"
+            ]
+          }
+        },
+        "rules": [
+          {
+            "id": "Database.0101",
+            "description": "You are using Amazone S3 database that is not supported in Azure. You can use Azure Blob Storage instead. The following is the details link about Azure Blob Storage.",
+            "label": "Amazone S3 dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Blob Storage",
+                "url": "https://learn.microsoft.com/azure/storage/blobs"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0102",
+            "description": "You are using Oracle database that is not supported in Azure. You can use Azure PostgreSQL instead. The following is the details link about Azure PostgreSQL.",
+            "label": "Oracle dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure PostgreSQL",
+                "url": "https://learn.microsoft.com/azure/postgresql/flexible-server"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0103",
+            "description": "You are using DB2 database that is not supported in Azure. You can use Azure PostgreSQL instead. The following is the details link about Azure PostgreSQL.",
+            "label": "DB2 dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure PostgreSQL",
+                "url": "https://learn.microsoft.com/azure/postgresql/flexible-server"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0104",
+            "description": "You are using minio storage that is not supported in Azure. You can use Azure Blob Storage instead. The following is the details link about Azure Blob Storage.",
+            "label": "Minio dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Blob Storage",
+                "url": "https://learn.microsoft.com/azure/storage/blobs"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Database.0105",
+            "description": "System.Data.SqlClient dependency is detected. While System.Data.SqlClient will work in Azure, the newer Microsoft.Data.SqlClient package is the primary .NET SQL client moving forward and receiving the latest features. For example, Microsoft.Data.SqlClient easily allows use of Azure Managed Identity from a connection string.",
+            "label": "System.Data.SqlClient dependency detected",
+            "severity": "Optional",
+            "effort": 3,
+            "state": "Active",
+            "links": [
+              {
+                "url": "https://go.microsoft.com/fwlink/?LinkID=2242668"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Queue.0101",
+            "description": "You are using local Kafka that is not supported in Azure. You can use Azure Kafka or Azure Event Hubs for Apache Kafka instead. The following is the details link about Azure Kafka and Azure Event Hubs for Apache Kafka.",
+            "label": "Local kafka dependency detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure Kafka",
+                "url": "https://learn.microsoft.com/en-us/azure/partner-solutions/apache-kafka-confluent-cloud/overview"
+              },
+              {
+                "title": "Azure Event Hubs for Apache Kafka",
+                "url": "https://learn.microsoft.com/en-us/azure/event-hubs/azure-event-hubs-apache-kafka-overview"
+              }
+            ],
+            "enabled": true
+          },
+          {
+            "id": "Security.0101",
+            "description": "Windows Authentication (Negotiate) detected. The application is using Windows Authentication via Negotiate protocol which may not work as expected in Azure App Service. Consider using Azure Active Directory (Azure AD) authentication instead for better cloud compatibility and security.",
+            "label": "Windows Authentication (Negotiate) detected",
+            "severity": "Potential",
+            "effort": 5,
+            "state": "Active",
+            "links": [
+              {
+                "title": "Azure AD authentication for ASP.NET Core",
+                "url": "https://learn.microsoft.com/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp"
+              },
+              {
+                "title": "Migrate from Windows Authentication to Azure AD",
+                "url": "https://learn.microsoft.com/azure/active-directory/develop/scenario-web-app-sign-user-overview"
+              }
+            ],
+            "enabled": true
+          }
+        ],
+        "analyzers": [
+          {
+            "ruleId": "Database.0101",
+            "id": "Database.0101.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Amazon.S3.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0102",
+            "id": "Database.0102.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "Oracle.DataAccess.Client.OracleConnection",
+                "Oracle.DataAccess.Client.DataTable",
+                "Oracle.DataAccess.Client.OracleDataAdapter"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0103",
+            "id": "Database.0103.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "IBM.Data.DB2.DB2Command",
+                "IBM.Data.DB2.DB2Connection",
+                "IBM.Data.DB2.DB2DataReader"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0104",
+            "id": "Database.0104.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespaces",
+            "properties": {
+              "namespaces": [
+                "Minio",
+                "Minio.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0101",
+            "id": "Queue.0101.Types",
+            "traits": "",
+            "state": "Active",
+            "kind": "type",
+            "properties": {
+              "fullTypes": [
+                "Confluent.Kafka.IProducer",
+                "Confluent.Kafka.Producer",
+                "Confluent.Kafka.ProducerBuilder",
+                "Confluent.Kafka.ProducerConfig"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Queue.0101",
+            "id": "Queue.0101.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Confluent.Kafka.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInCode",
+            "traits": "",
+            "state": "Active",
+            "kind": "literal",
+            "properties": {
+              "strings": [
+                "password",
+                "pwd",
+                "Password",
+                "Pwd",
+                "secret",
+                "Secret"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson1",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "password"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson2",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "Password"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson3",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "pwd"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0003",
+            "id": "Security.0003.PasswordInJson4",
+            "traits": "",
+            "state": "Active",
+            "kind": "json",
+            "properties": {
+              "file": "appSettings.json|appsettings.*.json",
+              "path": "Pwd"
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0101",
+            "id": "Security.0101.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "Microsoft.AspNetCore.Authentication.Negotiate",
+                "Microsoft.AspNetCore.Authentication.Negotiate.*"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Security.0101",
+            "id": "Security.0101.WebConfigAuth",
+            "traits": "",
+            "state": "Active",
+            "kind": "xml",
+            "properties": {
+              "paths": [
+                "authentication",
+                "location/authentication",
+                "system.web/authentication",
+                "location/system.web/authentication"
+              ],
+              "attributes": {
+                "mode": "Windows"
+              }
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0105",
+            "id": "Database.0105.Namespace",
+            "traits": "",
+            "state": "Active",
+            "kind": "namespace",
+            "properties": {
+              "namespaces": [
+                "System.Data.SqlClient"
+              ]
+            },
+            "enabled": true
+          },
+          {
+            "ruleId": "Database.0105",
+            "id": "Database.0105.WebConfig",
+            "traits": "",
+            "state": "Active",
+            "kind": "xml",
+            "properties": {
+              "file": "web*.config",
+              "paths": [
+                "connectionStrings/add",
+                "entityFramework/providers/provider"
+              ],
+              "attributes": {
+                "providerName": "System.Data.SqlClient"
+              }
+            },
+            "enabled": true
+          }
+        ]
+      },
+      "hash": "0cc64a1a"
+    }
+  },
+  "analysisStartTime": "2025-07-22T16:46:49.2653297Z",
+  "analysisEndTime": "2025-07-22T16:46:50.7629447Z",
+  "privacyMode": "Unrestricted",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2271074",
+  "stats": {
+    "summary": {
+      "projects": 1,
+      "issues": 0,
+      "incidents": 0,
+      "effort": 0
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 0,
+        "Optional": 0,
+        "Potential": 0,
+        "Information": 0
+      },
+      "category": {}
+    }
+  },
+  "projects": [
+    {
+      "path": "HelloCopilot.csproj",
+      "startingProject": true,
+      "issues": 0,
+      "storyPoints": 0,
+      "ruleInstances": []
+    }
+  ],
+  "rules": {}
+}
